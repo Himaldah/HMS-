@@ -21,7 +21,7 @@ if (isset($_SESSION['pemail'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health Care System</title>
+    <title>Hospital Management System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/ae61999827.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -39,7 +39,7 @@ if (isset($_SESSION['pemail'])) {
 
 
         <div class="container mx-auto flex justify-between items-center px-6">
-            <a href="index.php" class="text-2xl font-bold">Health Care</a>
+            <a href="index.php" class="text-2xl font-bold">Hospital Management System</a>
             <ul class="flex space-x-6">
                 <li><a href="index.php" class="hover:text-blue-200">Home</a></li>
                 <li><a href="departments.php" class="hover:text-blue-200">Book Appointments</a></li>
