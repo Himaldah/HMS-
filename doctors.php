@@ -57,7 +57,6 @@ while ($row = $schedule_query->fetch_assoc()) {
 }
 
 
-
 // Get current day (e.g., Sunday)
 // $currentDay = date('l');
 // $date = $row['available_date'] ?? null;
