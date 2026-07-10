@@ -83,8 +83,6 @@ $bookedTokens = (int)$appt_result['booked'];
 // $tokensLeft = max($totalTokens - $bookedTokens, 0);
 
 
-
-
 ?>
 
 <body class="bg-white text-gray-800 ">
