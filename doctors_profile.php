@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="1">★☆☆☆☆</option>
                 </select>
                 <button type="submit" name="submit" class="ml-4 bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600">
-                    Submit Rating
+                Submit Rating
                 </button>
             </form>
         </div>
