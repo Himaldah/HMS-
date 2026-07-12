@@ -95,6 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
 
+
             <!-- Appointment Booking Form -->
             <!-- <div class="bg-white shadow-md rounded-lg p-6 text-center hover:shadow-lg hover:shadow-blue-200 transition duration-300 rounded-lg p-4 bg-white"> -->
                 <!-- <h2 class="text-xl font-semibold text-blue-900 mb-4">Patient Details</h2> -->
@@ -143,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 
         <!-- 👤 Step 2: Who is the appointment for? -->
-        <h2 class="text-xl font-semibold text-black mb-4">Who is the appointment for?</h2>
+        <h2 class="text-xl font-semibold text-black mb-4"> Who is the appointment for? </h2>
 
         <!-- Option Selector -->
         <div class="flex justify-center gap-6 mb-4">
@@ -154,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label class="flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-300 rounded-lg cursor-pointer transition hover:bg-blue-100">
                 <input type="radio" name="is_self" value="0" onchange="toggleOtherFields()" class="accent-blue-500">
-                <span class="text-blue-900 font-medium">Someone else</span>
+                <span class="text-blue-900 font-medium"> Someone else </span>
             </label>
         </div>  
 
