@@ -36,8 +36,8 @@ if (isset($_GET["delete"])) {
         </div>
 
         <div class="text-right mt-6">
-            <a href="edit_profile.php" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition">Edit Profile</a>
-            <a href="profile.php?delete=<?php echo $user['pid']; ?>" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition" onclick="return confirm('Your all appointmetns will also be delete! Are you sure to delete?')">Delete Account</a>
+            <a href="edit_profile.php" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition"> Edit Profile </a>
+            <a href="profile.php?delete=<?php echo $user['pid']; ?>" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition" onclick="return confirm('Your all appointmetns will also be delete! Are you sure to delete?')"> Delete Account </a>
         </div>
     </div>
 </main>
