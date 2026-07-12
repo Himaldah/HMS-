@@ -144,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-
 </body>
 </html>
 
@@ -159,7 +158,7 @@ if(isset($_POST['submit'])) {
     move_uploaded_file($_FILES['dicon']['tmp_name'], $icon_path);
 
     $conn->query("INSERT INTO departments (dname, ddescription, dicon_path) VALUES ('$name', '$description', '$icon_path')");
-    header("Location: departments.php");
+    header("Location:departments.php");
     $_SESSION['toast'] = ['message' => 'Department has been added.', 'type' => 'success'];
 }
 
