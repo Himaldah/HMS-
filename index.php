@@ -6,7 +6,7 @@ include 'includes/header.php';
 
     <div class="flex flex-col md:flex-row items-center justify-between">
         <div class="w-full md:w-1/2 text-center md:text-left space-y-4">
-            <h1 class="text-4xl font-bold text-blue-900">Healthcare at Your Fingertips</h1>
+            <h1 class="text-4xl font-bold text-blue-900">Healthcare At Your Fingertips</h1>
             <p class="text-lg text-gray-700">Book appointments, consult doctors, and manage health records online.</p>
             <a href="departments.php" class="bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-700 inline-block mt-4">
                 Book Appointments
@@ -29,7 +29,7 @@ include 'includes/header.php';
             <div class="p-6  rounded-lg shadow-lg hover:scale-100 transition shadow-blue-200 hover:shadow-white">
                 <h3 class="text-xl font-semibold mb-2 ">Telemedicine</h3>
                 <p class="text-gray-700">Consult doctors online anytime.</p>
-            </div> 
+             </div> 
 </div>
 <!-- <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div> -->
 </header>
