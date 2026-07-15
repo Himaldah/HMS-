@@ -22,7 +22,7 @@ $result = $conn->query($query);
 
     <!-- Page Header -->
     <header class="text-black text-center py-6 pt-14">
-        <h1 class="text-3xl text-center font-bold text-blue-900">Our Departments</h1>
+        <h1 class="text-3xl text-center font-bold text-blue-900"> Departments </h1>
     </header>
 
     <form method="GET" action="" class="max-w-md mx-auto my-6 text-center">
@@ -55,9 +55,10 @@ $result = $conn->query($query);
                         <p class="text-gray-800 font-medium mt-2 text-sm">Doctors Available: <?php echo $row['doctor_count']; ?></p> <!-- Reduced text size -->
                         <a href="doctors.php?department_id=<?php echo $row['did']; ?>"
                             class="mt-4 inline-block bg-pink-500 text-white px-3 py-2 rounded-lg hover:bg-pink-600 text-sm"> <!-- Reduced button size -->
-                            View Doctors
+                            View Doctors 
                         </a>
                     </div>
+                    
                 <?php endwhile; ?>
     <?php else: ?>
         <p class="text-center text-gray-600 col-span-full">No departments found for "<?php echo htmlspecialchars($search); ?>"</p>
