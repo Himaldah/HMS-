@@ -62,7 +62,7 @@ $departments = $conn->query("SELECT * FROM departments");
 <div class="container mx-auto">
     <!-- Add Doctor Form -->
     <div class="bg-white shadow-md rounded-lg p-6 mb-6">
-        <h2 class="text-xl font-semibold text-blue-700 mb-4">Add New Doctor</h2>
+        <h2 class="text-xl font-semibold text-blue-700 mb-4"> Add New Doctor </h2>
         <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm()" name="doctor">
 
             <?php if (!empty($image)): ?>
@@ -84,7 +84,6 @@ $departments = $conn->query("SELECT * FROM departments");
                     </option>
                 <?php endwhile; ?>
             </select>
-
 
             <input type="number" name="drphone" placeholder="Doctor Phone Number" required class="w-full p-2 border border-gray-300 rounded mb-1" value="<?php echo htmlspecialchars($doctor['drphone']); ?>">
             <small id="drphone-error" class="text-red-500 text-sm mb-3 block"></small>
@@ -182,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!fields.department.value) {
             showError('department', "Please select a department.");
         } else {
-            clearError('department');
+            clearError('department'); 
         }
     });
 
@@ -196,7 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
         errors[field].textContent = "";
     }
 });
-
 
 
     function togglePassword() {
