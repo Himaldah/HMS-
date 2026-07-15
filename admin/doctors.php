@@ -29,6 +29,7 @@ if (isset($_POST['submit'])) {
 
         if($stmt->affected_rows > 0) {
             $_SESSION['toast'] = ['message' => 'Doctor has been added.', 'type' => 'success'];
+
         } else {
             echo "<script>alert('Error adding doctor. Please try again.');</script>";
         }
@@ -49,7 +50,7 @@ if (isset($_GET["delete"])) {
 
 // Fetch departments and doctors
 $departments = $conn->query("SELECT * FROM departments");
-$result = $conn->query("SELECT doctors.*, departments.dname FROM doctors JOIN departments ON doctors.did = departments.did");
+$result = $conn->query("SELECT doctors.*, departments.dname FROM doctors JOIN departments ON doctors.did = departments.did"); 
 ?>
 
 <main class="flex-1 ml-52 p-2 overflow-auto mt-14">
@@ -67,7 +68,7 @@ $result = $conn->query("SELECT doctors.*, departments.dname FROM doctors JOIN de
             <select name="drdepartment" class="w-full p-2 mb-1 border rounded" required>
             <option value="" disabled selected>Select Department</option>
             <?php while ($row = $departments->fetch_assoc()): ?>
-                <option value="<?php echo $row['did']; ?>"><?php echo htmlspecialchars($row['dname']); ?></option>
+                <option value="<?php echo $row['did']; ?>"><?php echo htmlspecialchars($row['dname']); ?></option> 
             <?php endwhile; ?>
             </select>
             <small id="drdepartment-error" class="text-red-500 text-sm mb-3 block"></small>
@@ -88,7 +89,7 @@ $result = $conn->query("SELECT doctors.*, departments.dname FROM doctors JOIN de
             </div>
 
             <button type="submit" name="submit" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600" onclick="return confirm('Are you sure to add?')">
-                Add Doctor
+            Add Doctor
             </button>
         </form>
     </div>
@@ -96,7 +97,7 @@ $result = $conn->query("SELECT doctors.*, departments.dname FROM doctors JOIN de
     <!-- Doctors Table -->
     <div class="bg-white shadow-md rounded-lg p-6">
         <div class="flex justify-between items-center">
-                <h2 class="text-xl font-semibold text-blue-700 mb-4">Doctor List</h2>
+                <h2 class="text-xl font-semibold text-blue-700 mb-4"> Doctor List </h2>
                 <form method="POST" action="api/export_excel.php">
                     <input type="text" name="pagetitle" value="<?php echo $pageTitle; ?>" hidden>
                     <button type="submit" class="bg-green-500 text-white px-4 py-2 mb-4 rounded hover:bg-green-600"><i class="fa-solid fa-table"></i> Export to Excel</button>
@@ -129,7 +130,7 @@ $result = $conn->query("SELECT doctors.*, departments.dname FROM doctors JOIN de
                         <?php $passlenghth = strlen($row['drpassword']); ?>
                         <td class="border border-gray-300 px-4 py-2"><?php echo str_repeat('*', $passlenghth); ?></td>
                         <td class="border border-gray-300 px-4 py-2">
-                            <a href="edit_doctors.php?drid=<?php echo $row['drid'] ?>" class="text-green-500 hover:text-green-700">Edit</a>
+                            <a href="edit_doctors.php?drid=<?php echo $row['drid'] ?>" class="text-green-500 hover:text-green-700"> Edit </a>
                             <!-- <a href="doctors.php?delete=<?php echo $row['drid']; ?>" 
                                class="text-red-500 hover:text-red-700" 
                                onclick="return confirm('Are you sure to delete?')">Delete</a> -->

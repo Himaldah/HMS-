@@ -64,7 +64,7 @@ if (isset($_GET["delete"])) {
         <main class="flex-1 ml-52 p-2 overflow-auto mt-14">
         <div class="bg-white shadow-md rounded-lg p-6">
             <div class="flex justify-between items-center">
-                <h2 class="text-xl font-semibold text-blue-700 mb-4">Appointment List</h2>
+                <h2 class="text-xl font-semibold text-blue-700 mb-4"> Appointment List </h2>
                 <form method="POST" action="api/export_excel.php">
                     <input type="text" name="pagetitle" value="<?php echo $pageTitle; ?>" hidden>
                     <button type="submit" class="bg-green-500 text-white px-4 py-2 mb-4 rounded hover:bg-green-600"><i class="fa-solid fa-table"></i> Export to Excel</button>
@@ -74,7 +74,7 @@ if (isset($_GET["delete"])) {
                 <thead>
                     <tr class="bg-blue-500 text-white">
                         <th class="border border-gray-300 px-4 py-2">ID</th>
-                        <th class="border border-gray-300 px-4 py-2">Craeted At</th>
+                        <th class="border border-gray-300 px-4 py-2">Created At</th>
                         <th class="border border-gray-300 px-4 py-2">PID</th>
                         <th class="border border-gray-300 px-4 py-2">DRID</th>
                         <th class="border border-gray-300 px-4 py-2">DID</th>
@@ -116,7 +116,7 @@ if (isset($_GET["delete"])) {
 
                             <td class="border border-gray-300 px-4 py-2"><?php echo $row['status']; ?></td>
                             <td class="border border-gray-300 px-4 py-2">
-                                <a href="appointments.php?delete=<?php echo $row['aid']; ?>" class="text-red-500 hover:text-red-700" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                                <a href="appointments.php?delete=<?php echo $row['aid']; ?>" class="text-red-500 hover:text-red-700" onclick="return confirm('Are you sure to delete?')"> Delete </a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
