@@ -6,7 +6,7 @@ include 'api/admin_notification.php';
 
 
 $schdule_query = "SELECT * FROM doctor_schedule ORDER BY available_date DESC";
-$result = $conn->query($schdule_query);
+$result = $conn->query($schdule_query); 
 if (isset($_GET["delete"])) {
     $sid = $_GET["delete"];
     $conn->query("DELETE FROM doctor_schedule WHERE sid=$sid ");
@@ -17,7 +17,7 @@ if (isset($_GET["delete"])) {
 ?>
         <main class="flex-1 ml-52 p-2 overflow-auto mt-14">
         <div class="bg-white shadow-md rounded-lg p-6">
-            <h2 class="text-xl font-semibold text-blue-700 mb-4">Schedules List</h2>
+            <h2 class="text-xl font-semibold text-blue-700 mb-4"> Schedules List</h2>
             <table class="w-full border-collapse border border-gray-300">
                 <thead>
                     <tr class="bg-blue-500 text-white">
@@ -42,7 +42,7 @@ if (isset($_GET["delete"])) {
                             <td class="border border-gray-300 px-4 py-2"><?php echo $schedule['end_time']; ?></td>
                             <td class="border border-gray-300 px-4 py-2"><?php echo $schedule['tokens']; ?></td>
                             <td class="border border-gray-300 px-4 py-2">
-                                <a href="schedules.php?delete=<?php echo $schedule['sid']; ?>" class="text-red-500 hover:text-red-700"onclick="return confirm('Are you sure to delete?')">Delete</a>
+                                <a href="schedules.php?delete=<?php echo $schedule['sid']; ?>" class="text-red-500 hover:text-red-700"onclick="return confirm('Are you sure to delete?')"> Delete </a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
