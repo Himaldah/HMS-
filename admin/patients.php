@@ -47,7 +47,7 @@ if (isset($_GET["delete"])) {
                 <h2 class="text-xl font-semibold text-blue-700 mb-4">Patients/Users List</h2>
                 <form method="POST" action="api/export_excel.php">
                     <input type="text" name="pagetitle" value="<?php echo $pageTitle; ?>" hidden>
-                    <button type="submit" class="bg-green-500 text-white px-4 py-2 mb-4 rounded hover:bg-green-600"><i class="fa-solid fa-table"></i>Export to Excel</button>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 mb-4 rounded hover:bg-green-600"><i class="fa-solid fa-table"></i>Export to Excel Sheet</button>
                 </form>
             </div>
             
@@ -77,7 +77,7 @@ if (isset($_GET["delete"])) {
                             <td class="border border-gray-300 px-4 py-2"><?php echo $row['paddress']; ?></td>
                             <td class="border border-gray-300 px-4 py-2"><?php echo $row['pemail']; ?></td>
                             <td class="border border-gray-300 px-4 py-2">
-                                <a href="patients.php?delete=<?php echo $row['pid']; ?>" class="text-red-500 hover:text-red-700" onclick="return confirm('Are you sure to delete?')"> Delete </a>
+                                <a href="patients.php?delete=<?php echo $row['pid']; ?>" class="text-red-500 hover:text-red-700" onclick="return confirm('Are you sure to delete?')">Delete</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
