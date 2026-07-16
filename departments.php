@@ -26,7 +26,7 @@ $result = $conn->query($query);
     </header>
 
     <form method="GET" action="" class="max-w-md mx-auto my-6 text-center">
-        <input type="text" name="search" id="searchInput" placeholder="Search departments..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" class="w-2/3 px-4 py-2 border rounded-lg">
+        <input type="text" name="search" id="searchInput" placeholder="Search depart    ments..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" class="w-2/3 px-4 py-2 border rounded-lg">
         <button type="submit" class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600">Search</button>
     </form>
 
@@ -58,7 +58,7 @@ $result = $conn->query($query);
                             View Doctors 
                         </a>
                     </div>
-                    
+
                 <?php endwhile; ?>
     <?php else: ?>
         <p class="text-center text-gray-600 col-span-full">No departments found for "<?php echo htmlspecialchars($search); ?>"</p>
