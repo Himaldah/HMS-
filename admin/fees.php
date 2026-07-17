@@ -18,7 +18,7 @@ $result2 = $conn->query($fee_query);
                 <h2 class="text-xl font-semibold text-blue-700 mb-4">Add Fee</h2>
                 <form method="POST" enctype="multipart/form-data">
                     <select name="department" class="w-full p-2 mb-3 border rounded" required>
-                        <option value="" disabled selected>Select Department</option>
+                        <option value="" disabled selected>Selects Department</option>
                         <?php while ($depaertment = $result->fetch_assoc()): ?>
                             <option value="<?php echo $depaertment['did']; ?>"><?php echo htmlspecialchars($depaertment['dname']); ?></option>
                         <?php endwhile; ?>
