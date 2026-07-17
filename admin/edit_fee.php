@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 <div class="container mx-auto">
     <!-- Add Doctor Form -->
     <div class="bg-white shadow-md rounded-lg p-6 mb-6">
-        <h2 class="text-xl font-semibold text-blue-700 mb-4">Update Fee</h2>
+        <h2 class="text-xl font-semibold text-blue-700 mb-4">Fee Update</h2>
                 <form method="POST" enctype="multipart/form-data">
 
                     <select name="department" class="w-full p-2 mb-3 border rounded" required>
@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
                     </select>
 
                     <input type="number" name="amount" placeholder="Enter Amount" required class="w-full p-2 border border-gray-300 rounded mb-3" value="<?php echo $fee['famount'] ?>">
-                    <button type="submit" name="submit" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Update Fee</button>
+                    <button type="submit" name="submit" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Fee Update</button>
                 
                 </form>
     </div>
