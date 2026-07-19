@@ -48,17 +48,19 @@ if (isset($_GET["delete"])) {
                             $row = $result1->fetch_assoc();
                             $drid = $row['drid'];
                             ?>
+                         
+
                             <td class="border border-gray-300 px-4 py-2 text-blue-500 hover:text-blue-700"><a href="doctors.php?drid=<?php echo $drid; ?>"><?php echo $drid; ?></a></td>
-
-
                             <td class="border border-gray-300 px-4 py-2"><?php echo $report['created_at']; ?></td>
                             <td class="border border-gray-300 px-4 py-2"><?php echo $report['report_title']; ?></td>
                             <td class="border border-gray-300 px-4 py-2"><?php echo $report['report_description']; ?></td>
                             <td class="border border-gray-300 px-4 py-2"><?php echo $report['report_date']; ?></td>
                             <td class="border border-gray-300 px-4 py-2"><?php echo $report['file_path']; ?></td>
                             <td class="border border-gray-300 px-4 py-2">
+                                /*
                                 <a href="view_report.php?rid=<?php echo $report['rid']; ?>" class="text-red-500 hover:text-red-700">View</a>
                                 <a href="reports.php?delete=<?php echo $report['rid']; ?>" class="text-red-500 hover:text-red-700" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                                */
                             </td>
                         </tr>
                     <?php endwhile; ?>
