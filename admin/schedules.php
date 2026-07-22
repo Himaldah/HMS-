@@ -32,20 +32,7 @@ if (isset($_GET["delete"])) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($schedule = $result->fetch_assoc()): ?>
-                        <tr class="text-center">
-                            <td class="border border-gray-300 px-4 py-2"><?php echo $schedule['sid']; ?></td>
-                            <td class="border border-gray-300 px-4 py-2 text-blue-500 hover:text-blue-700"><a href="doctors.php?drid=<?php echo $schedule['drid']; ?>"><?php echo $schedule['drid']; ?></a></td>
-                            <td class="border border-gray-300 px-4 py-2"><?php echo $schedule['available_date']; ?></td>
-                            <td class="border border-gray-300 px-4 py-2"><?php echo $schedule['day']; ?></td>
-                            <td class="border border-gray-300 px-4 py-2"><?php echo $schedule['start_time']; ?></td>
-                            <td class="border border-gray-300 px-4 py-2"><?php echo $schedule['end_time']; ?></td>
-                            <td class="border border-gray-300 px-4 py-2"><?php echo $schedule['tokens']; ?></td>
-                            <td class="border border-gray-300 px-4 py-2">
-                                <a href="schedules.php?delete=<?php echo $schedule['sid']; ?>" class="text-red-500 hover:text-red-700"onclick="return confirm('Are you sure to delete?')"> Delete </a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
+                    
                 </tbody>
             </table>
         </div>
