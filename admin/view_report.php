@@ -1,12 +1,3 @@
-<?php
-$pageTitle = 'Reports   ';
-include 'includes/sidemenu.php';
-include 'includes/header.php';
-
-$rid = $_GET['rid'] ?? null;
-$reports_query = "SELECT * FROM reports WHERE rid = '$rid'";
-$report_result = $conn->query($reports_query);
-
 
 
 ?>
@@ -77,39 +68,6 @@ $report_result = $conn->query($reports_query);
 
 
 
-
-        <div>
-            <!-- <h2 class="text-xl font-semibold text-pink-600 mb-4"><?php echo htmlspecialchars($report['report_title']); ?></h2> -->
-            <!-- <p class="text-sm text-gray-500 mb-2"><strong>Report Date:</strong> <?php echo htmlspecialchars($report['report_date']); ?></p> -->
-            <div class="mb-4">
-                <p><span class="font-semibold">Date: </span><?php echo htmlspecialchars($report['report_date']); ?></p>
-                <!-- <label class="block text-gray-700">Date: </label>
-                <input type="date" name="date" class="w-full px-3 py-2 border rounded-md"> -->
-            </div>
-                <!-- <textarea name="description" placeholder="Write Description" class="w-full px-3 py-2 border rounded-md"></textarea> -->
-                <h3 class="text-xl font-semibold mb-1 ">Description</h3>
-                <p class="text-gray-700"><?php echo nl2br(htmlspecialchars($report['report_description'])); ?></p>
-
-
-            <?php if (!empty($report['file_path'])): ?>
-                <a href="<?php echo htmlspecialchars($report['file_path']); ?>" target="_blank"
-                   class="inline-block mt-2 text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition">
-                   View Attached File
-                </a>
-            <?php endif; ?>
-            <!-- <a href="download_report.php?aid=<?php echo $appointment_id; ?>" class="mt-4 inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"><i class="fas fa-file-pdf mr-2"></i> Download PDF</a> -->
-            <div class="flex justify-end mt-4">
-                <a href="../api/download_report.php?aid=<?php echo $report['aid']; ?>" 
-                class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"><i class="fas fa-file-pdf mr-2"></i>
-                Download PDF
-                </a>
-            </div>  
-        </div>
-    <?php else: ?>
-        <p class="text-gray-600 text-center mt-8">No reports available.</p>
-    <?php endif; ?>
-
-    </div>
 
 </main>
 
