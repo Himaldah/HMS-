@@ -44,7 +44,7 @@ if (isset($_GET["delete"])) {
         <div class="bg-white shadow-md rounded-lg p-6">
 
             <div class="flex justify-between items-center">
-                <h2 class="text-xl font-semibold text-blue-700 mb-4">Patients/Users List</h2>
+                <h2 class="text-xl font-semibold text-blue-700 mb-4">Patients</h2>
                 <form method="POST" action="api/export_excel.php">
                     <input type="text" name="pagetitle" value="<?php echo $pageTitle; ?>" hidden>
                     <button type="submit" class="bg-green-500 text-white px-4 py-2 mb-4 rounded hover:bg-green-600"><i class="fa-solid fa-table"></i>Export to Excel Sheet</button>
@@ -87,27 +87,7 @@ if (isset($_GET["delete"])) {
     </div>
 </main>
 
-<script>
-function exportTableToExcel(tableID, filename = '') {
-    const dataType = 'application/vnd.ms-excel';
-    const tableSelect = document.getElementById(tableID);
-    const tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-    
-    filename = filename ? filename + '.xls' : 'excel_data.xls';
 
-    const downloadLink = document.createElement("a");
-    document.body.appendChild(downloadLink);
-
-    if (navigator.msSaveOrOpenBlob) {
-        const blob = new Blob(['\ufeff', tableHTML], { type: dataType });
-        navigator.msSaveOrOpenBlob(blob, filename);
-    } else {
-        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-        downloadLink.download = filename;
-        downloadLink.click();
-    }
-}
-</script>
 
 
 </body>
