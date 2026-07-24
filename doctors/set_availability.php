@@ -33,3 +33,104 @@
         </button>
     </form>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const dateInput = document.getElementById("available_date");
+    const startInput = document.getElementById("start_time");
+    const endInput = document.getElementById("end_time");
+    const tokenInput = document.getElementById("token_limit");
+
+    // Attach live validation events
+    dateInput.addEventListener("change", validateDate);
+    startInput.addEventListener("input", validateTime);
+    endInput.addEventListener("input", validateTime);
+    tokenInput.addEventListener("input", validateToken);
+
+    function setDayName(inputElem) {
+        const value = inputElem.value;
+        if (value) {
+            const date = new Date(value);
+            const options = { weekday: 'long' };
+            const dayName = new Intl.DateTimeFormat('en-US', options).format(date);
+            document.getElementById("dayOutput").value = dayName;
+            validateDate();
+        }
+    }
+    window.setDayName = setDayName; // Expose to inline HTML
+
+    function parseTime(timeStr) {
+        const [hours, minutes] = timeStr.split(":").map(Number);
+        return hours * 60 + minutes;
+    }
+
+    function validateDate() {
+        const date = new Date(dateInput.value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (!dateInput.value) {
+            showError("date-error", "Please select a date.");
+            return false;
+        } else if (date < today) {
+            showError("date-error", "Please select a future date.");
+            return false;
+        } else {
+            showError("date-error", "");
+            return true;
+        }
+    }
+
+    function validateTime() {
+        const start = startInput.value;
+        const end = endInput.value;
+
+        if (!start || !end) {
+            showError("time-error", "Both start and end time are required.");
+            return false;
+        }
+
+        const startMin = parseTime(start);
+        const endMin = parseTime(end);
+        const minTime = parseTime("10:00");
+        const maxTime = parseTime("16:00");
+
+        if (startMin < minTime || endMin > maxTime) {
+            showError("time-error", "Time must be between 10:00 AM and 4:00 PM.");
+            return false;
+        }
+
+        if (startMin >= endMin) {
+            showError("time-error", "Start time must be before end time.");
+            return false;
+        }
+
+        showError("time-error", "");
+        return true;
+    }
+
+    function validateToken() {
+        const val = parseInt(tokenInput.value, 10);
+        if (isNaN(val) || val < 1) {
+            showError("token-error", "Token number must be a positive number.");
+            return false;
+        } else {
+            showError("token-error", "");
+            return true;
+        }
+    }
+
+    function showError(id, msg) {
+        document.getElementById(id).textContent = msg;
+    }
+
+    window.validateForm = function () {
+        const validDate = validateDate();
+        const validTime = validateTime();
+        const validToken = validateToken();
+
+        return validDate && validTime && validToken;
+    };
+});
+</script>
+ 
