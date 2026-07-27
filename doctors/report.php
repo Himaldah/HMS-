@@ -1,3 +1,92 @@
+<?php
+$pageTitle = 'Appointments List';
+include 'includes/header.php';
+
+$appointment_id = $_GET['aid'] ?? null;
+
+// Fetch Appointments
+$appointments = $conn->query("SELECT * FROM appointments WHERE aid = $appointment_id" );
+if ($appointments->num_rows > 0) {
+    $appointment = $appointments->fetch_assoc();
+    $appointment_date = $appointment['appointment_date'] ?? null;
+    $appointment_time = $appointment['atime'] ?? null;
+    $patient_id = $appointment['pid'] ?? null;
+} else {
+    echo "<p class='text-red-500'>No appointment found.</p>";
+    exit;
+}
+
+// $patient_email = $_SESSION['pemail'] ?? null;
+$patient_qry = "SELECT * FROM patients WHERE pid = '$patient_id'";
+$patient_result = mysqli_query($conn, $patient_qry);
+$patient = mysqli_fetch_assoc($patient_result);
+// $patient_id = $patient['pid'] ?? null;
+$patient_name = $patient['pname'] ?? null;
+$patient_phone = $patient['pphone'] ?? null;
+$patient_dob = $patient['pdob'] ?? null;
+$patient_gender = $patient['pgender'] ?? null;
+$patient_email = $patient['pemail'] ?? null;
+
+
+$report_qry = "SELECT * FROM reports WHERE pid = $patient_id AND aid = $appointment_id";
+$report_result = mysqli_query($conn, $report_qry);
+// $report = mysqli_fetch_assoc($report_result);
+
+$drid = $appointment['drid'] ?? null;
+
+$doctor_stmt = $conn->prepare("SELECT * FROM doctors WHERE drid = ?");
+$doctor_stmt->bind_param("i", $drid);
+$doctor_stmt->execute();
+$doctor_result = $doctor_stmt->get_result();
+$doctor_info = $doctor_result->fetch_assoc();
+
+$department_id = $doctor_info['did'] ?? null;
+$department_stmt = $conn->prepare("SELECT * FROM departments WHERE did = ?");
+$department_stmt->bind_param("i", $department_id);
+$department_stmt->execute();
+$department_result = $department_stmt->get_result();
+$department_info = $department_result->fetch_assoc();
+$department_name = $department_info['dname'] ?? null;
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $date = $_POST['date'];
+    $description = $_POST['description'];
+
+    // Check if a report already exists
+    $check_stmt = $conn->prepare("SELECT * FROM reports WHERE pid = ? AND aid = ?");
+    $check_stmt->bind_param("ii", $patient_id, $appointment_id);
+    $check_stmt->execute();
+    $existing_report = $check_stmt->get_result();
+
+    if ($existing_report->num_rows > 0) {
+        // Update report
+        $stmt = $conn->prepare("UPDATE reports SET report_description = ?, report_date = ? WHERE pid = ? AND aid = ?");
+        $stmt->bind_param("ssii", $description, $date, $patient_id, $appointment_id);
+
+        if ($stmt->execute()) {
+            echo "<p class='text-green-500 text-center'>Report Updated!</p>";
+        } else {
+            echo "<p class='text-red-500 text-center'>Error updating report: " . $stmt->error . "</p>";
+        }
+    } else {
+        // Insert new report
+        $stmt = $conn->prepare("INSERT INTO reports (aid, pid, report_description, report_date) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("iiss", $appointment_id, $patient_id, $description, $date);
+
+        if ($stmt->execute()) {
+            echo "<p class='text-green-500 text-center'>Report Added!</p>";
+        } else {
+            echo "<p class='text-red-500 text-center'>Error inserting report: " . $stmt->error . "</p>";
+        }
+    }
+}
+
+$current_date = date('Y-m-d');
+$patient_age = date_diff(date_create($patient_dob), date_create($current_date))->y;
+
+?>
+
 <header class="text-black text-center py-4">
     <h1 class="text-2xl font-semibold">Medical Report</h1>
 </header>
