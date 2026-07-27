@@ -222,7 +222,7 @@ $bookedTokens = (int)$appt_result['booked'];
                         </a>
                     <?php else : ?>
                         <a href="login.php" class="mt-4 inline-block bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600">
-                            Login to Book Appointment
+                            Login to Booking Appointment
                         </a>
                     <?php endif; ?> 
                 </div>
