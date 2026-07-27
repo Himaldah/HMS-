@@ -1,3 +1,10 @@
+<?php
+include 'includes/header.php';
+
+$drid = $_SESSION['drid'];
+$doctor = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM doctors WHERE drid = '$drid'"));
+?>
+
 <div class="max-w-md mx-auto bg-white p-6 rounded-xl shadow-md pt-2 hover:shadow-lg hover:shadow-blue-200 transition duration-300 mt-20">
     <h2 class="text-3xl font-bold text-blue-900 text-center">Set Your Availability</h2>
 
@@ -134,3 +141,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
  
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $date = mysqli_real_escape_string($conn, $_POST['available_date']);
+    $day = mysqli_real_escape_string($conn, $_POST['day']);
+    $start = mysqli_real_escape_string($conn, $_POST['start_time']);
+    $end = mysqli_real_escape_string($conn, $_POST['end_time']);
+    $tokens = intval($_POST['token_limit']);
+
+    if (!empty($date) && !empty($start) && !empty($end) && $tokens > 0) {
+        $qry = "INSERT INTO doctor_schedule (drid, available_date, day, start_time, end_time, tokens) 
+                VALUES ('$drid', '$date', '$day', '$start', '$end', '$tokens')";
+        mysqli_query($conn, $qry);
+        echo "<script>alert('Schedule saved successfully!'); window.location='app_schedules.php';</script>";
+    }
+}
+
+?>
