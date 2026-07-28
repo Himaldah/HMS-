@@ -1,3 +1,29 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['doctor_loggedin'])) {
+    header('Location: login.php');
+    exit();
+}
+
+include '../configs/db.php';
+
+
+
+// Check if the user is logged in
+$drname = "";
+if (isset($_SESSION['dremail'])) {
+    $dr_username = $_SESSION['dremail'];
+    $qry = "SELECT * FROM doctors WHERE dremail = '$dr_username'";
+    $result = mysqli_query($conn, $qry);
+    $row = mysqli_fetch_assoc($result);
+    
+    if ($row) {
+        $drname = $row['drname'];
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
