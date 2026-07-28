@@ -1,3 +1,30 @@
+<?php
+include 'includes/header.php';
+
+$drid = $_SESSION['drid'];
+$sid = $_GET['sid'] ?? null;
+
+$scheduleqry = "SELECT * FROM doctor_schedule WHERE drid = '$drid' AND sid = '$sid'";
+$scheduleres = mysqli_query($conn, $scheduleqry);
+$schedule = mysqli_fetch_assoc($scheduleres);
+
+
+// Update logic
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $date = $_POST['date'];
+    $day = $_POST['day'];
+    $start_time = $_POST['start_time'];
+    $end_time = $_POST['end_time'];
+    $tokens = $_POST['tokens'];
+
+    $update = "UPDATE doctor_schedule SET available_date = '$date', day = '$day', start_time = '$start_time', end_time = '$end_time', tokens = '$tokens' WHERE drid = '$drid' AND sid = '$sid'";
+    if (mysqli_query($conn, $update)) {
+        echo "<script>alert('Schedule updated!'); window.location='app_schedules.php';</script>";
+    } else {
+        echo "<p class='text-red-500'>Error updating profile.</p>";
+    }
+}
+?>
 
 <main class="p-6 max-w-3xl mx-auto pt-20">
     <form method="POST" class="bg-white rounded-lg shadow p-6 hover:shadow-lg hover:shadow-blue-200 transition duration-300" name="schedule" onsubmit="return validateForm()">
