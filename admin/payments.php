@@ -1,24 +1,8 @@
-<?php
-$pageTitle = 'Payments   ';
-include 'includes/sidemenu.php';
-include 'includes/header.php';  
-include 'api/admin_notification.php';
 
-
-$payments_query = "SELECT * FROM payments ORDER BY pmcreated_at DESC";
-$result = $conn->query($payments_query);
-
-if (isset($_GET["delete"])) {
-    $id = $_GET["delete"];
-    $conn->query("DELETE FROM payments WHERE pmid=$id");
-    header("Location: payments.php");
-    $_SESSION['toast'] = ['message' => 'Payment has been deleted.', 'type' => 'success'];
-} 
-?>
 
         <main class="flex-1 ml-52 p-2 overflow-auto mt-14">
         <div class="bg-white shadow-md rounded-lg p-6">
-            <h2 class="text-xl font-semibold text-blue-700 mb-4">Payments List</h2>
+            <h2 class="text-xl font-semibold text-blue-700 mb-4">List of Payments</h2>
             <table class="w-full border-collapse border border-gray-300">
                 <thead>
                     <tr class="bg-blue-500 text-white">
