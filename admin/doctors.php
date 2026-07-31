@@ -89,7 +89,7 @@ $result = $conn->query("SELECT doctors.*, departments.dname FROM doctors JOIN de
             </div>
 
             <button type="submit" name="submit" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600" onclick="return confirm('Are you sure to add?')">
-            Add Doctor
+            Added Doctor
             </button>
         </form>
     </div>
@@ -97,7 +97,7 @@ $result = $conn->query("SELECT doctors.*, departments.dname FROM doctors JOIN de
     <!-- Doctors Table -->
     <div class="bg-white shadow-md rounded-lg p-6">
         <div class="flex justify-between items-center">
-                <h2 class="text-xl font-semibold text-blue-700 mb-4"> Doctor List </h2>
+                <h2 class="text-xl font-semibold text-blue-700 mb-4">List of Doctor</h2>
                 <form method="POST" action="api/export_excel.php">
                     <input type="text" name="pagetitle" value="<?php echo $pageTitle; ?>" hidden>
                     <button type="submit" class="bg-green-500 text-white px-4 py-2 mb-4 rounded hover:bg-green-600"><i class="fa-solid fa-table"></i> Export to Excel</button>
