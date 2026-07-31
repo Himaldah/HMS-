@@ -24,7 +24,7 @@ $report_result = $conn->query($reports_query);
         ?>
         <div class="mb-6 bg-white shadow-md border rounded-lg p-4">
 
-        <h2 class="text-xl text-center font-bold text-blue-700 mb-4">OHCMS</h2>
+        <h2 class="text-xl text-center font-bold text-blue-700 mb-4">HMS</h2>
         <!-- <h2 class="text-xl font-semibold text-blue-700 mb-2">Patient Details</h2> -->
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -103,7 +103,7 @@ $report_result = $conn->query($reports_query);
             </div>  
         </div>
     <?php else: ?>
-        <p class="text-gray-600 text-center mt-8">No reports available.</p>
+        <p class="text-gray-600 text-center mt-8">No reports available</p>
     <?php endif; ?>
 
     </div>
