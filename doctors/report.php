@@ -98,7 +98,7 @@ $patient_age = date_diff(date_create($patient_dob), date_create($current_date))-
     
         <div class="mb-6 bg-white shadow-md border rounded-lg p-4">
 
-        <h2 class="text-xl text-center font-bold text-blue-700 mb-4">OHCMS</h2>
+        <h2 class="text-xl text-center font-bold text-blue-700 mb-4">HMS</h2>
         <!-- <h2 class="text-xl font-semibold text-blue-700 mb-2">Patient Details</h2> -->
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -152,7 +152,7 @@ $patient_age = date_diff(date_create($patient_dob), date_create($current_date))-
             </div>
         <label class="block text-gray-700">Description</label>
                 <textarea name="description" placeholder="Write Description" class="w-full px-3 py-2 border rounded-md"></textarea>
-                <button type="submit" class="bg-pink-500 text-white p-2 rounded hover:bg-pink-600">Add</button>
+                <button type="submit" class="bg-pink-500 text-white p-2 rounded hover:bg-pink-600">Add New</button>
             <?php } ?>
         </div>
         
