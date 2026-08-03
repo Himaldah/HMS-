@@ -58,3 +58,33 @@ if (isset($_GET["delete"])) {
 }
 
 ?>
+
+<main class="flex-1 ml-52 p-2 overflow-auto mt-14">
+    <div class="container mx-auto">
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-semibold text-blue-700 mb-4">Edit Article</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="text" name="title" placeholder="Title" required class="w-full p-2 border border-gray-300 rounded mb-3" value="<?php echo $title; ?>">
+                <textarea name="content" placeholder="Content" required class="w-full p-2 border border-gray-300 rounded mb-3"><?php echo $content; ?></textarea>
+                <!-- <input type="file" name="image" id="imageInput" accept="image/*" class="w-full p-2 border border-gray-300 rounded mb-3" value="<?php echo $image; ?>">
+                <img id="previewImage" src="" alt="Image Preview" style="max-width: 200px;"> -->
+                <!-- Show existing image -->
+
+                <?php if (!empty($image)): ?>
+                    <img src="<?php echo $image; ?>" alt="Current Image" class="mb-3 w-32 h-32 object-cover rounded">
+                <?php endif; ?>
+
+                <!-- File input to upload new image -->
+                <input type="file" name="image" class="w-full p-2 border border-gray-300 rounded mb-1" accept="image/*">
+                <small id="image-error" class="text-red-500 text-sm mb-3 block"></small>
+
+                <!-- <img id="previewImage" class="hidden mb-3 w-32 h-32 object-cover rounded" alt="New Image Preview"> -->
+
+
+                <button type="submit" name="submit" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Update</button>
+                <a href="articles.php" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+</main>
