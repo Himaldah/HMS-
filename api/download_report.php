@@ -30,3 +30,54 @@ ob_start();
 
 $age = date_diff(date_create($patient['pdob']), date_create('now'))->y;
 ?>
+
+<style>
+    body { font-family: DejaVu Sans, sans-serif; }
+    .section { margin-bottom: 20px; }
+    .title { font-size: 22px; font-weight: bold; text-align: center; margin-bottom: 10px; }
+    .subtitle { font-size: 16px; font-weight: bold; margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 6px 4px; vertical-align: top; }
+</style>
+
+<div class="title">HMS - Medical Report</div>
+
+
+<div class="section">
+    <!-- <div class="subtitle">Appointment Info</div> -->
+    <table>
+    <tr><td><strong>Patient ID:</strong> <?= $patient['pid'] ?></td><td><strong>Appointment ID:</strong> <?= $appointment['aid'] ?></td><td><strong>Appointment Date:</strong> <?= $appointment_date ?></td></tr>
+        <!-- <tr><td><strong>Doctor:</strong> <?= $doctor['drname'] ?></td><td><strong>Department:</strong> <?= $department['dname'] ?></td></tr> -->
+    </table>
+</div>
+
+<hr class="my-4"></hr>
+
+
+<div class="section">
+    <!-- <div class="subtitle">Patient Details</div> -->
+    <table>
+        <tr><td><strong>Name:</strong> <?= $patient['pname'] ?></td><td><strong>Gender:</strong> <?= $patient['pgender'] ?></td></tr>
+        <tr><td><strong>DOB:</strong> <?= $patient['pdob'] ?></td><td><strong>Age:</strong> <?= $age; ?></td></tr>
+        <tr><td><strong>Address:</strong> <?= $patient['paddress'] ?></td><td><strong>phone:</strong> <?= $patient['pphone'] ?></td></tr>
+        <tr><td><strong>Email:</strong> <?= $patient['pemail'] ?></td></tr>
+    </table>
+</div>
+
+<hr class="my-4"></hr>  
+
+<div class="section">
+    <table>
+        <tr><td><strong>Doctor:</strong> <?= $doctor['drname'] ?></td><td><strong>Department:</strong> <?= $department['dname'] ?></td></tr> 
+    </table>
+</div>
+
+<hr class="my-4"></hr>  
+
+<div class="section">
+    <!-- <div class="subtitle">Report</div> -->
+    <table>
+        <tr><td><strong>Report Date:</strong> <?= $report['report_date'] ?></td></tr>
+        <tr><td colspan="2"><strong>Description:</strong><br><?= nl2br(htmlspecialchars($report['report_description'])) ?></td></tr>
+    </table>
+</div>
