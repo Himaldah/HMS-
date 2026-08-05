@@ -53,7 +53,7 @@ if (isset($_GET['action']) && isset($_GET['aid'])) {
 
 ?>
     <header class="text-black text-center py-2 pt-20">
-        <h1 class="text-3xl text-center font-bold text-blue-900 ">Appointments</h1>
+        <h1 class="text-3xl text-center font-bold text-blue-900 ">Appointments lists </h1>
     </header>
 
     
