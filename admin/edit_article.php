@@ -88,3 +88,28 @@ if (isset($_GET["delete"])) {
     </div>
 
 </main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.forms["article"];
+    const imageInput = form["image"];
+    const imageError = document.getElementById("image-error");
+
+    imageInput.addEventListener("change", () => {
+        const file = imageInput.files[0];
+        if (file && !/\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)) {
+            imageInput.classList.add("border-red-500");
+            imageError.textContent = "Only image files (.jpg, .jpeg, .png, .gif, .webp) are allowed.";
+        } else {
+            imageInput.classList.remove("border-red-500");
+            imageError.textContent = "";
+        }
+    });
+
+    window.validateForm = function () {
+        imageInput.dispatchEvent(new Event("change"));
+        return !imageError.textContent;
+    }
+});
+</script>
+
