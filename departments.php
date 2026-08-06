@@ -22,12 +22,12 @@ $result = $conn->query($query);
 
     <!-- Page Header -->
     <header class="text-black text-center py-6 pt-14">
-        <h1 class="text-3xl text-center font-bold text-blue-900"> Departments </h1>
+        <h1 class="text-3xl text-center font-bold text-blue-900">Departments</h1>
     </header>
 
     <form method="GET" action="" class="max-w-md mx-auto my-6 text-center">
         <input type="text" name="search" id="searchInput" placeholder="Search depart    ments..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" class="w-2/3 px-4 py-2 border rounded-lg">
-        <button type="submit" class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600">Search</button>
+        <button type="submit" class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600">Search Here</button>
     </form>
 
 
