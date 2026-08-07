@@ -38,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="mb-4">
             <label class="block text-gray-700">Gender</label>
             <select name="pgender" class="w-full p-2 border rounded">
-                <option value="Male" <?php if($user['pgender'] == 'Male') echo 'selected'; ?>>Male</option>
                 <option value="Female" <?php if($user['pgender'] == 'Female') echo 'selected'; ?>>Female</option>
+                <option value="Male" <?php if($user['pgender'] == 'Male') echo 'selected'; ?>>Male</option>
                 <option value="Other" <?php if($user['pgender'] == 'Other') echo 'selected'; ?>>Other</option>
             </select>
         </div>
