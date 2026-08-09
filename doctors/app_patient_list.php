@@ -66,7 +66,7 @@ $sn = 1;
 ?>
 
 <header class="text-black text-center py-4 pt-20">
-        <h1 class="text-3xl font-bold text-blue-900 text-center">Appointment Patient </h1>
+        <h1 class="text-3xl font-bold text-blue-900 text-center"> Patient Appointment </h1>
     </header>
 
     <form method="GET" class="mb-4 flex flex-wrap justify-center gap-4">    
@@ -208,7 +208,7 @@ $sn = 1;
                         <?php endwhile; ?>
                         
                         <?php else: ?>
-                            <p class="text-center text-gray-600 col-span-full">No patient found!</p>
+                            <p class="text-center text-gray-600 col-span-full">Patient Not Found!</p>
                         <?php endif; ?>
                     </tbody>
                     
