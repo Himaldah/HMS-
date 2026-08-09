@@ -1,3 +1,40 @@
+<?php
+require '../dompdf-3.1.0/dompdf/vendor/autoload.php';
+use Dompdf\Dompdf;
+
+include '../configs/db.php';
+session_start();
+
+$payment_id = $_GET['pmid'] ?? null;
+if (!$payment_id) {
+    die("Invalid Payment ID.");
+}
+
+// Fetch payment + related data
+$query = "
+    SELECT pay.*, 
+           a.appointment_date, a.token_num, 
+           p.pname, p.pphone, 
+           d.drname 
+    FROM payments pay 
+    JOIN appointments a ON pay.appointment_id = a.aid 
+    JOIN patients p ON a.pid = p.pid 
+    JOIN doctors d ON a.drid = d.drid 
+    WHERE pay.pmid = ?
+";
+
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $payment_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$data = $result->fetch_assoc();
+
+if (!$data) {
+    die("No receipt found.");
+}
+
+ob_start(); // Buffering HTML
+?>
 
 <!-- HTML for Receipt -->
 <style>
@@ -33,3 +70,16 @@
     <p class="info"><strong>Status:</strong> <?php echo ucfirst($data['pmstatus']); ?></p>
     <p class="info"><strong>Paid On:</strong> <?php echo $data['pmcreated_at']; ?></p>
 </div>
+
+
+<?php
+$html = ob_get_clean();
+$dompdf = new Dompdf();
+$dompdf->loadHtml($html);
+$dompdf->setPaper('A5', 'portrait');
+$dompdf->render();
+
+$filename = "Receipt_{$data['pname']}_{$payment_id}.pdf";
+$dompdf->stream($filename, ["Attachment" => 1]);
+exit;
+?>
