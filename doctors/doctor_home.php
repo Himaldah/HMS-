@@ -28,7 +28,7 @@ $total_schedules = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as to
 <!-- <header class="relative bg-gradient-to-r from-blue-300 to-pink-300 px-10 pt-24 pb-16 h-screen overflow-hidden"> -->
 <header class="relative px-10 pt-20 pb-16 h-screen overflow-hidden">
 <main class="p-6 max-w-6xl mx-auto  ">
-    <h2 class="text-2xl font-bold text-blue-900 mb-6 text-center">Welcome, <?php echo htmlspecialchars($doctor['drname']); ?></h2>
+    <h2 class="text-2xl font-bold text-blue-900 mb-6 text-center">Welcome To HMS, <?php echo htmlspecialchars($doctor['drname']); ?></h2>
     <h2 class="text-2xl font-bold text-blue-900 mb-6 ">Dashboard</h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 mb-6">
