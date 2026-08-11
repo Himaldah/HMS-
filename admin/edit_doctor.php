@@ -62,7 +62,7 @@ $departments = $conn->query("SELECT * FROM departments");
 <div class="container mx-auto">
     <!-- Add Doctor Form -->
     <div class="bg-white shadow-md rounded-lg p-6 mb-6">
-        <h2 class="text-xl font-semibold text-blue-700 mb-4"> Add New Doctor </h2>
+        <h2 class="text-xl font-semibold text-blue-700 mb-4">Add New Doctor</h2>
         <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm()" name="doctor">
 
             <?php if (!empty($image)): ?>
