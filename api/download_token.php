@@ -1,3 +1,35 @@
+<?php
+require '../dompdf-3.1.0\dompdf\vendor\autoload.php'; // Dompdf autoload
+
+use Dompdf\Dompdf;
+
+include '../configs/db.php'; // or your DB connection file
+session_start();
+
+$appointment_id = $_GET['aid'] ?? null;
+
+if (!$appointment_id) {
+    die("Invalid Appointment ID.");
+}
+
+// Fetch appointment data
+$query = "SELECT a.*, d.drname, d.drprofile, p.pname, p.pgender, p.pphone 
+          FROM appointments a 
+          JOIN doctors d ON a.drid = d.drid 
+          JOIN patients p ON a.pid = p.pid 
+          WHERE a.aid = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $appointment_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$data = $result->fetch_assoc();
+
+if (!$data) {
+    die("No appointment found.");
+}
+
+ob_start(); // Start output buffering
+?>
 
 <!-- HTML for the token PDF -->
 <style>
