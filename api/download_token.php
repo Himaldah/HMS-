@@ -60,3 +60,16 @@ ob_start(); // Start output buffering
     <p class="info"><strong>Appointment Date:</strong> <?php echo htmlspecialchars($data['appointment_date']); ?></p>
     <p class="token-number">Token #: <?php echo htmlspecialchars($data['token_num']); ?></p>
 </div>
+
+<?php
+$html = ob_get_clean();
+
+$dompdf = new Dompdf();
+$dompdf->loadHtml($html);
+
+// Optional: set paper size and orientation
+$dompdf->setPaper('A6', 'portrait');
+
+$dompdf->render();
+$dompdf->stream("Appointment_Token_{$data['pname']}_{$appointment_id}_{$data['token_num']}.pdf", ["Attachment" => 1]);
+exit;
