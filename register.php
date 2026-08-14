@@ -70,3 +70,113 @@ include 'includes/header.php';
     include 'includes/footer.php';
 ?>
 
+
+<script>
+    function showError(field, message) {
+        document.getElementById(field + "-error").textContent = message;
+    }
+
+    function clearError(field) {
+        document.getElementById(field + "-error").textContent = "";
+    }
+
+    // Real-time validation
+    document.getElementById("name").addEventListener("input", function () {
+        const name = this.value;
+        if (name.length < 3) {
+            showError("name", "Name must be at least 3 characters long.");
+        } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+            showError("name", "Only letters and spaces are allowed.");
+        } else {
+            clearError("name");
+        }
+    });
+
+    document.getElementById("phone").addEventListener("input", function () {
+        const phone = this.value;
+        if (!/^(97|98)\d{8}$/.test(phone)) {
+            showError("phone", "Phone must start with 97 or 98 and be exactly 10 digits.");
+        } else {
+            clearError("phone");
+        }
+    });
+
+    document.getElementById("email").addEventListener("input", function () {
+        const email = this.value;
+        const emailRegex = /^[^\d\s][\w.]+@[a-zA-Z\d.]+\.[a-zA-Z]{2,}$/;
+        if (email.includes('-') || !emailRegex.test(email)) {
+            showError("email", "Enter a valid email (no hyphens or spaces, and must start with a letter or number).");
+        } else {
+            clearError("email");
+        }
+    });
+
+    document.getElementById("passwordField").addEventListener("input", function () {
+        const password = this.value;
+        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            showError("password", "Min 8 chars, with uppercase, lowercase, number, and special character.");
+        } else {
+            clearError("password");
+        }
+    });
+
+    document.getElementById("dob").addEventListener("change", function () {
+        const dob = new Date(this.value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        if (dob > today) {
+            showError("dob", "DOB cannot be in the future.");
+        } else {
+            clearError("dob");
+        }
+    });
+
+    document.getElementById("gender").addEventListener("change", function () {
+        if (this.value === "") {
+            showError("gender", "Please select a gender.");
+        } else {
+            clearError("gender");
+        }
+    });
+
+    document.getElementById("address").addEventListener("input", function () {
+        const address = this.value.trim();
+        if (address.length < 3) {
+            showError("address", "Address must be at least 3 characters.");
+        } else {
+            clearError("address");
+        }
+    });
+
+    // Final check on submit
+    document.querySelector("form[name='sign-up']").addEventListener("submit", function (e) {
+        const errors = document.querySelectorAll("span[id$='-error']");
+        let hasError = false;
+        errors.forEach(span => {
+            if (span.textContent !== "") {
+                hasError = true;
+            }
+        });
+        if (hasError) {
+            e.preventDefault();
+        }
+    });
+
+    function togglePassword() {
+        const input = document.getElementById("passwordField");
+        const icon = document.getElementById("eyeIcon");
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
+
+
+
