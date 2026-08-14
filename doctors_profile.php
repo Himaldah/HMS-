@@ -54,9 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="mt-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">Rate this doctor:</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Rate the doctor:</h3>
             <form method="POST" action="">
-                <label for="rating" class="block mb-2 text-sm text-gray-600">Select a rating:</label>
+                <label for="rating" class="block mb-2 text-sm text-gray-600">Select a Rating:</label>
                 <select name="rating" id="rating" class="border rounded px-3 py-2 text-yellow-500">
                     <option value="5">★★★★★</option>
                     <option value="4">★★★★☆</option>
