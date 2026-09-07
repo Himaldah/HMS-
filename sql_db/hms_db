@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2025 at 08:11 PM
+-- Generation Time: Sep 07, 2026 at 07:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hms_db`
+-- Database: `hsm_db`
 --
 
 -- --------------------------------------------------------
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`aid`, `aemail`, `apassword`) VALUES
-(1, 'admin@gmail.com', '54321');
+(1, 'admin@gmail.com', '123');
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,6 @@ CREATE TABLE `appointments` (
 
 INSERT INTO `appointments` (`aid`, `pid`, `drid`, `did`, `pname`, `pphone`, `other_gender`, `other_dob`, `appointment_date`, `appointment_time`, `token_num`, `status`, `acreated_at`, `is_self`) VALUES
 
-
 -- --------------------------------------------------------
 
 --
@@ -87,10 +86,10 @@ CREATE TABLE `appointment_fees` (
 --
 
 INSERT INTO `appointment_fees` (`fid`, `did`, `famount`) VALUES
-(3, 13, 7),
-(7, 15, 6),
-(9, 16, 2),
-(11, 12, 4);
+(2, 12, 4),
+(3, 13, 8),
+(4, 15, 5),
+(5, 16, 3);
 
 -- --------------------------------------------------------
 
@@ -130,10 +129,6 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`did`, `dname`, `ddescription`, `dicon_path`) VALUES
-(12, 'General Medicine', 'साधारण चिकित्सा', 'uploads/departments/General Medicine.png'),
-(13, 'Cardiology ', 'मुटुरोग', 'uploads/departments/Cardiology .png'),
-(15, 'Neurology', 'स्नायविक', 'uploads/departments/Neurology.png'),
-(16, 'Pediatric', 'बाल स्वास्थ्य', 'uploads/departments/Pediatrics.png');
 
 -- --------------------------------------------------------
 
@@ -156,8 +151,6 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`drid`, `did`, `drname`, `drprofile`, `drphone`, `dremail`, `drpassword`) VALUES
-
-
 -- --------------------------------------------------------
 
 --
@@ -198,8 +191,7 @@ CREATE TABLE `newsletter_subscribers` (
 -- Dumping data for table `newsletter_subscribers`
 --
 
-INSERT INTO `newsletter_subscribers` (`nsid`, `nsemail`, `ns_subscribed_at`) VALUES
-
+INSERT INTO `newsletter_subscribers` (`nsid`, `nsemail`, `ns_subscribed_at`) VALUES;
 
 -- --------------------------------------------------------
 
@@ -244,25 +236,12 @@ CREATE TABLE `payments` (
   `pmcreated_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `ratings`
+-- Dumping data for table `payments`
 --
 
-CREATE TABLE `ratings` (
-  `rtid` int(11) NOT NULL,
-  `drid` int(11) NOT NULL,
-  `pid` int(11) NOT NULL,
-  `rating` int(11) DEFAULT NULL CHECK (`rating` between 1 and 5),
-  `rated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `payments` (`pmid`, `patient_id`, `appointment_id`, `pmtransaction_id`, `pmamount`, `payment_method`, `pmstatus`, `pmcreated_at`) VALUES
 
---
--- Dumping data for table `ratings`
---
-
-INSERT INTO `ratings` (`rtid`, `drid`, `pid`, `rating`, `rated_at`) VALUES
 
 -- --------------------------------------------------------
 
@@ -287,6 +266,27 @@ CREATE TABLE `reports` (
 
 INSERT INTO `reports` (`rid`, `aid`, `pid`, `report_title`, `report_description`, `report_date`, `file_path`, `created_at`) VALUES
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `uid` int(11) NOT NULL,
+  `uname` varchar(100) NOT NULL,
+  `uemail` varchar(100) NOT NULL,
+  `upassword` varchar(255) NOT NULL,
+  `urole` enum('admin','doctor','patient') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`uid`, `uname`, `uemail`, `upassword`, `urole`) VALUES
+(1, 'Raghav pandey', 'raghavpandey14@gmail.com', '8848', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -362,20 +362,19 @@ ALTER TABLE `payments`
   ADD KEY `appointment_id` (`appointment_id`);
 
 --
--- Indexes for table `ratings`
---
-ALTER TABLE `ratings`
-  ADD PRIMARY KEY (`rtid`),
-  ADD KEY `fk_ratings_doctor` (`drid`),
-  ADD KEY `fk_ratings_patient` (`pid`);
-
---
 -- Indexes for table `reports`
 --
 ALTER TABLE `reports`
   ADD PRIMARY KEY (`rid`),
   ADD KEY `fk_reports_patient` (`pid`),
   ADD KEY `fk_reports_appointments` (`aid`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`uid`),
+  ADD UNIQUE KEY `uemail` (`uemail`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -391,13 +390,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `appointment_fees`
 --
 ALTER TABLE `appointment_fees`
-  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `articles`
@@ -409,19 +408,19 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `drid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `drid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `doctor_schedule`
 --
 ALTER TABLE `doctor_schedule`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `newsletter_subscribers`
@@ -433,25 +432,25 @@ ALTER TABLE `newsletter_subscribers`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `pmid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `ratings`
---
-ALTER TABLE `ratings`
-  MODIFY `rtid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pmid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -488,13 +487,6 @@ ALTER TABLE `doctor_schedule`
 ALTER TABLE `payments`
   ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`pid`),
   ADD CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`aid`);
-
---
--- Constraints for table `ratings`
---
-ALTER TABLE `ratings`
-  ADD CONSTRAINT `fk_ratings_doctor` FOREIGN KEY (`drid`) REFERENCES `doctors` (`drid`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_ratings_patient` FOREIGN KEY (`pid`) REFERENCES `patients` (`pid`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `reports`
