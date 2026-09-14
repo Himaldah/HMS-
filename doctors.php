@@ -57,30 +57,7 @@ while ($row = $schedule_query->fetch_assoc()) {
 }
 
 
-// Get current day (e.g., Sunday)
-// $currentDay = date('l');
-// $date = $row['available_date'] ?? null;
 
-// 1. Fetch total tokens for current day from doctor_schedule
-$schedule_stmt = $conn->prepare("SELECT tokens FROM doctor_schedule WHERE drid = ? AND available_date = ?");
-$schedule_stmt->bind_param("ii", $doctor['drid'], $date);
-$schedule_stmt->execute();
-$schedule_result = $schedule_stmt->get_result();
-$schedule = $schedule_result->fetch_assoc();
-$schedule_stmt->close();
-
-// $totalTokens = $schedule ? (int)$schedule['tokens'] : 0;
-
-// 2. Count booked appointments for today
-$todayDate = date('Y-m-d');
-$appt_stmt = $conn->prepare("SELECT COUNT(*) as booked FROM appointments WHERE drid = ? AND appointment_date = ?");
-$appt_stmt->bind_param("is", $doctor['drid'], $todayDate);
-$appt_stmt->execute();
-$appt_result = $appt_stmt->get_result()->fetch_assoc();
-$appt_stmt->close();
-
-$bookedTokens = (int)$appt_result['booked'];
-// $tokensLeft = max($totalTokens - $bookedTokens, 0);
 
 
 ?>
@@ -106,7 +83,34 @@ $bookedTokens = (int)$appt_result['booked'];
 
 
         <?php if ($doctor_result && $doctor_result->num_rows > 0): ?>
-            <?php while ($doctor = $doctor_result->fetch_assoc()): ?>
+            <?php while ($doctor = $doctor_result->fetch_assoc()):
+
+                // Get current day (e.g., Sunday)
+// $currentDay = date('l');
+// $date = $row['available_date'] ?? null;
+
+// 1. Fetch total tokens for current day from doctor_schedule
+$schedule_stmt = $conn->prepare("SELECT tokens FROM doctor_schedule WHERE drid = ? AND available_date = ?");
+$schedule_stmt->bind_param("ii", $doctor['drid'], $date);
+$schedule_stmt->execute();
+$schedule_result = $schedule_stmt->get_result();
+$schedule = $schedule_result->fetch_assoc();
+$schedule_stmt->close();
+
+// $totalTokens = $schedule ? (int)$schedule['tokens'] : 0;
+
+// 2. Count booked appointments for today
+$todayDate = date('Y-m-d');
+$appt_stmt = $conn->prepare("SELECT COUNT(*) as booked FROM appointments WHERE drid = ? AND appointment_date = ?");
+$appt_stmt->bind_param("is", $doctor['drid'], $todayDate);
+$appt_stmt->execute();
+$appt_result = $appt_stmt->get_result()->fetch_assoc();
+$appt_stmt->close();
+
+$bookedTokens = (int)$appt_result['booked'];
+// $tokensLeft = max($totalTokens - $bookedTokens, 0);
+?>
+
                 <div class="bg-white shadow-md rounded-lg p-4 border border-gray-200 text-center hover:shadow-lg hover:shadow-blue-200 transition duration-300 rounded-lg p-4 bg-white">
                     <img src="admin/<?php echo htmlspecialchars($doctor['drprofile']); ?>" 
                          alt="Doctor Profile" 
