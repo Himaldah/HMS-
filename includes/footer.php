@@ -37,7 +37,7 @@
     <div>
       <h3 class="text-lg font-semibold mb-3">Contact</h3>
       <p class="text-sm">Email: contact.hms@gmail.com</p>
-      <p class="text-sm">Phone: +977-9812345678</p>
+      <p class="text-sm">Phone: +977-9817118662</p>
       <div class="flex space-x-4 mt-2">
         <a href="#" class="hover:text-blue-200"><i class="fab fa-facebook-f"></i></a>
         <a href="#" class="hover:text-blue-200"><i class="fab fa-twitter"></i></a>

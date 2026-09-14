@@ -46,7 +46,6 @@ if (isset($_SESSION['pemail'])) {
                 <li><a href="services.php" class="hover:text-blue-200">Services</a></li>
                 <li><a href="contact.php" class="hover:text-blue-200">Contact</a></li>
                 <li><a href="about.php" class="hover:text-blue-200">About</a></li>
-                <li><a href="doctor/doctor_home.php" class="hover:text-blue-200">Doctor Home</a></li>
                 <li><a href="admin/dashboard.php" class="hover:text-blue-200">Admin</a></li>
 
                 <?php if (isset($_SESSION['pemail'])) { ?>
