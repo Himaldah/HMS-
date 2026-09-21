@@ -1,4 +1,69 @@
 <?php
+include 'configs/db.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+require 'PHPMailer/src/Exception.php';
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $gender = $_POST['gender'];
+    $dob = $_POST['dob'];  
+    $address = $_POST['address'];
+    $password = $_POST['password'];
+    $password = password_hash($password, PASSWORD_BCRYPT);
+    
+    $otp = rand(100000, 999999);
+
+    $_SESSION['email'] = $email;
+    $_SESSION['otp'] = $otp;
+
+
+    // Check if email already exists
+    $check = mysqli_query($conn, "SELECT * FROM patients WHERE pemail = '$email'");
+    if (mysqli_num_rows($check) > 0) {
+        echo "<script>alert('Email already registered!');</script>";
+    } else {
+        // Insert user
+        $insert = mysqli_query($conn, "INSERT INTO patients (pname, pemail, pphone, pgender, pdob, paddress, ppassword, otp_code) VALUES ('$name', '$email', '$phone', '$gender', '$dob', '$address', '$password', '$otp')");
+        
+        if ($insert) {
+            // Send OTP via email
+            $mail = new PHPMailer(true);
+            try {
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'contact.ohcms@gmail.com';
+                $mail->Password   = 'ipkh fvbc wura kkeq';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port       = 587;
+        
+                $mail->setFrom('contact.ohcms@gmail.com', 'HealthCare System');
+                $mail->addAddress($email, $name);
+                $mail->isHTML(true);
+                $mail->Subject = 'Your OTP for Email Verification';
+                $mail->Body    = "<p>Hello $name,</p><p>Your OTP is: <strong>$otp</strong></p>";
+        
+                $mail->send();
+                // echo "<script>window.location.href='verify_otp.php';</script>";
+                header("Location: verify_otp.php");
+                exit();
+            } catch (Exception $e) {
+                echo "<script>alert('Registration successful, but OTP email failed: {$mail->ErrorInfo}');</script>";
+            }
+        } else {
+            echo "<script>alert('Registration failed!');</script>";
+        }
+    }
+}
+?>
+
+<?php
 include 'includes/header.php';
 ?>
 <div class="bg-white p-8 rounded-lg shadow-md w-96 mx-auto mt-20 hover:shadow-lg hover:shadow-blue-200 transition duration-300">
@@ -69,6 +134,7 @@ include 'includes/header.php';
     <?php
     include 'includes/footer.php';
 ?>
+
 
 
 <script>
@@ -177,6 +243,3 @@ include 'includes/header.php';
         }
     }
 </script>
-
-
-
